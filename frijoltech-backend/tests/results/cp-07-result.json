@@ -1,0 +1,10 @@
+{
+  "id": "CP-07",
+  "nombre": "Consultar cronograma fenológico",
+  "rf": "RF-06",
+  "tipo": "Camino feliz",
+  "estado": "aprobado",
+  "tiempoMs": 22,
+  "observaciones": "Cronograma con 7 etapas y fechas estimadas correctas. Campaña inexistente correctamente retorna 404.",
+  "timestamp": "2026-05-18T01:48:21.278Z"
+}

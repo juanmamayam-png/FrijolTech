@@ -1,0 +1,10 @@
+{
+  "id": "CP-01",
+  "nombre": "Login exitoso",
+  "rf": "RF-02",
+  "tipo": "Camino feliz",
+  "estado": "aprobado",
+  "tiempoMs": 75,
+  "observaciones": "JWT emitido correctamente. sub=1. Tiempo: 75ms",
+  "timestamp": "2026-05-18T01:48:22.443Z"
+}

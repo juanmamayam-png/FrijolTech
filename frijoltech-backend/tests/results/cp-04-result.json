@@ -1,0 +1,10 @@
+{
+  "id": "CP-04",
+  "nombre": "Predio sin campos obligatorios",
+  "rf": "RF-04",
+  "tipo": "Validación",
+  "estado": "aprobado",
+  "tiempoMs": 14,
+  "observaciones": "Zod intercepta errores antes de llegar al repositorio. mockPredioCrear no fue invocado.",
+  "timestamp": "2026-05-18T01:48:23.040Z"
+}

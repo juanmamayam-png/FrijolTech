@@ -1,0 +1,10 @@
+{
+  "id": "CP-08",
+  "nombre": "Registrar avance fenológico",
+  "rf": "RF-07",
+  "tipo": "Camino feliz",
+  "estado": "aprobado",
+  "tiempoMs": 7,
+  "observaciones": "registroId=77 persistido. Validación de observaciones mínimas correcta.",
+  "timestamp": "2026-05-18T01:48:22.809Z"
+}

@@ -1,0 +1,10 @@
+{
+  "id": "CP-10",
+  "nombre": "Validación incidencia — plaga inválida",
+  "rf": "RF-11",
+  "tipo": "Validación",
+  "estado": "aprobado",
+  "tiempoMs": 8,
+  "observaciones": "plagaId no numérico rechazado con 422 correctamente.",
+  "timestamp": "2026-05-18T01:48:23.164Z"
+}
