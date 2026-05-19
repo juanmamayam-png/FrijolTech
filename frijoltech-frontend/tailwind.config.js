@@ -1,0 +1,57 @@
+/** @type {import('tailwindcss').Config} */
+export default {
+  content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
+  theme: {
+    extend: {
+      colors: {
+        primary: {
+          DEFAULT: '#2C5F2D',
+          50:  '#f0f7f0',
+          100: '#d8ecd8',
+          200: '#b3d9b4',
+          300: '#80be81',
+          400: '#4d9f4f',
+          500: '#2C5F2D',
+          600: '#254f26',
+          700: '#1e3f1f',
+          800: '#172f18',
+          900: '#0f1f10',
+        },
+        secondary: {
+          DEFAULT: '#97BC62',
+          50:  '#f5f9ee',
+          100: '#e8f2d4',
+          200: '#d0e5a9',
+          300: '#b9d87e',
+          400: '#97BC62',
+          500: '#7da04d',
+          600: '#638039',
+          700: '#4a6029',
+          800: '#31401a',
+          900: '#18200d',
+        },
+        accent: {
+          DEFAULT: '#B85042',
+          50:  '#fdf3f2',
+          100: '#fae4e1',
+          200: '#f5c9c4',
+          300: '#eeada7',
+          400: '#d47268',
+          500: '#B85042',
+          600: '#9b3f34',
+          700: '#7d2f26',
+          800: '#5f2018',
+          900: '#40100b',
+        },
+        light: '#F5F1E8',
+        dark: '#1A3A1B',
+        muted: '#6B7C5B',
+      },
+      fontFamily: {
+        serif: ['Georgia', 'Times New Roman', 'serif'],
+        sans: ['Inter', 'system-ui', 'sans-serif'],
+      },
+    },
+  },
+  plugins: [],
+};

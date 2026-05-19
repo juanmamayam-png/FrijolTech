@@ -1,0 +1,403 @@
+{
+  "info": {
+    "name": "FrijolTech API",
+    "description": "Colección de endpoints para el sistema FrijolTech — gestión fenológica de fríjol (Phaseolus vulgaris) en Colombia.\n\nCubre RF-02, RF-04, RF-05, RF-06, RF-07, RF-11.",
+    "version": "1.0.0",
+    "_postman_id": "frijoltech-api-2026",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "http://localhost:3000/api/v1", "type": "string" },
+    { "key": "token",   "value": "", "type": "string" }
+  ],
+  "item": [
+    {
+      "name": "RF-02 — Autenticación",
+      "item": [
+        {
+          "name": "CP-01 Login exitoso",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status 200', () => pm.response.to.have.status(200));",
+                  "pm.test('Tiene token JWT', () => {",
+                  "  const body = pm.response.json();",
+                  "  pm.expect(body.data).to.have.property('token');",
+                  "  pm.collectionVariables.set('token', body.data.token);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/auth/login",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"correo\": \"carlos.perez@frijoltech.co\",\n  \"contrasena\": \"Frijol2026*\"\n}"
+            }
+          }
+        },
+        {
+          "name": "CP-02 Login fallido — contraseña incorrecta",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status 401', () => pm.response.to.have.status(401));"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/auth/login",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"correo\": \"carlos.perez@frijoltech.co\",\n  \"contrasena\": \"WrongPass123\"\n}"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "RF-04 — Predios",
+      "item": [
+        {
+          "name": "CP-03 Registrar predio completo",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status 201', () => pm.response.to.have.status(201));",
+                  "pm.test('Tiene predioId', () => {",
+                  "  const body = pm.response.json();",
+                  "  pm.expect(body.data).to.have.property('id');",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/predios",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nombre\": \"Finca La Esperanza\",\n  \"ubicacion\": \"Vereda Las Acacias, Algeciras, Huila\",\n  \"latitud\": 2.522,\n  \"longitud\": -75.310,\n  \"altitud\": 1580,\n  \"areaTotal\": 4.5\n}"
+            }
+          }
+        },
+        {
+          "name": "CP-04 Predio incompleto → 422",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status 422', () => pm.response.to.have.status(422));",
+                  "pm.test('Tiene errors', () => {",
+                  "  pm.expect(pm.response.json()).to.have.property('errors');",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/predios",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"ubicacion\": \"Vereda La Granja, Cáqueza, Cundinamarca\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Listar predios del usuario",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/predios",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "RF-05 — Campañas",
+      "item": [
+        {
+          "name": "CP-05 Iniciar campaña Cargamanto (Factory Method)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status 201', () => pm.response.to.have.status(201));",
+                  "pm.test('Campaña tiene 7 etapas', () => {",
+                  "  const body = pm.response.json();",
+                  "  pm.expect(body.data.etapas).to.have.lengthOf(7);",
+                  "});",
+                  "pm.test('Primera etapa en curso', () => {",
+                  "  const body = pm.response.json();",
+                  "  pm.expect(body.data.etapas[0].estado).to.equal('en_curso');",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/campanas",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"loteId\": 1,\n  \"variedadId\": 1,\n  \"nombreVariedad\": \"Cargamanto\",\n  \"fechaSiembra\": \"2026-04-01\",\n  \"areaSembrada\": 2.5\n}"
+            }
+          }
+        },
+        {
+          "name": "CP-06 Iniciar campaña ICA Cerinza (clima frío)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status 201', () => pm.response.to.have.status(201));",
+                  "pm.test('Variedad ICA Cerinza registrada', () => {",
+                  "  const body = pm.response.json();",
+                  "  pm.expect(body.data.campana.nombreVariedad).to.equal('ICA Cerinza');",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/campanas",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"loteId\": 1,\n  \"variedadId\": 3,\n  \"nombreVariedad\": \"ICA Cerinza\",\n  \"fechaSiembra\": \"2026-04-15\",\n  \"areaSembrada\": 1.8\n}"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "RF-06 — Cronograma fenológico",
+      "item": [
+        {
+          "name": "CP-07 Consultar cronograma de campaña",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status 200', () => pm.response.to.have.status(200));",
+                  "pm.test('Tiene etapas', () => {",
+                  "  const body = pm.response.json();",
+                  "  pm.expect(body.data).to.have.property('etapas');",
+                  "  pm.expect(body.data.etapas.length).to.be.greaterThan(0);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/campanas/1/cronograma",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "RF-07 — Avance fenológico",
+      "item": [
+        {
+          "name": "CP-08 Registrar avance sin foto → 201",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status 201', () => pm.response.to.have.status(201));",
+                  "pm.test('Tiene registroId', () => {",
+                  "  const body = pm.response.json();",
+                  "  pm.expect(body.data).to.have.property('registroId');",
+                  "  pm.expect(typeof body.data.registroId).to.equal('number');",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/etapas/4/avance",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"campanaId\": 1,\n  \"observaciones\": \"Floración uniforme en el 90% del área. Pétalos blancos vigorosos. Sin síntomas de antracnosis hasta el momento. Temperatura media 22°C.\"\n}"
+            }
+          }
+        },
+        {
+          "name": "CP-08b Avance con fotoUrl → 201",
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/etapas/4/avance",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"campanaId\": 1,\n  \"observaciones\": \"Avance con foto adjunta. Floración en etapa media.\",\n  \"fotoUrl\": \"https://storage.frijoltech.co/fotos/floracion_lote1_20260507.jpg\"\n}"
+            }
+          }
+        },
+        {
+          "name": "CP-08c Observaciones < 5 chars → 422",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status 422', () => pm.response.to.have.status(422));"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/etapas/4/avance",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"campanaId\": 1,\n  \"observaciones\": \"ok\"\n}"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "RF-11 — Incidencias fitosanitarias",
+      "item": [
+        {
+          "name": "Listar plagas del catálogo",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status 200', () => pm.response.to.have.status(200));",
+                  "pm.test('Lista plagas no vacía', () => {",
+                  "  pm.expect(pm.response.json().data.length).to.be.greaterThan(0);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/campanas/plagas"
+          }
+        },
+        {
+          "name": "CP-09 Incidencia alta → Observer disparado",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status 201', () => pm.response.to.have.status(201));",
+                  "pm.test('Incidencia registrada con id', () => {",
+                  "  pm.expect(pm.response.json().data).to.have.property('id');",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/campanas/1/incidencias",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"fecha\": \"2026-05-10\",\n  \"severidad\": \"alta\",\n  \"observaciones\": \"Manchas necróticas en el 40% del área foliar, posible Colletotrichum lindemuthianum. Condiciones húmedas favorecen avance.\",\n  \"plagaId\": 1\n}"
+            }
+          }
+        },
+        {
+          "name": "CP-10 plagaId inválido → 422",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status 422', () => pm.response.to.have.status(422));"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/campanas/1/incidencias",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"fecha\": \"2026-05-10\",\n  \"severidad\": \"alta\",\n  \"observaciones\": \"Observaciones con suficiente longitud para pasar validación.\",\n  \"plagaId\": \"no-es-numero\"\n}"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

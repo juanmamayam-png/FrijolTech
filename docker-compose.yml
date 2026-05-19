@@ -1,0 +1,47 @@
+services:
+  db:
+    image: postgres:14-alpine
+    environment:
+      POSTGRES_DB: frijoltech
+      POSTGRES_USER: frijoltech
+      POSTGRES_PASSWORD: frijoltech2026
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./frijoltech-backend/sql/001_create_schema.sql:/docker-entrypoint-initdb.d/01_schema.sql
+      - ./frijoltech-backend/sql/002_seed_roles.sql:/docker-entrypoint-initdb.d/02_roles.sql
+      - ./frijoltech-backend/sql/003_seed_variedades.sql:/docker-entrypoint-initdb.d/03_variedades.sql
+      - ./frijoltech-backend/sql/004_seed_plagas.sql:/docker-entrypoint-initdb.d/04_plagas.sql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U frijoltech"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  backend:
+    build: ./frijoltech-backend
+    ports:
+      - "3000:3000"
+    environment:
+      NODE_ENV: development
+      PORT: 3000
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_USER: frijoltech
+      DB_PASSWORD: frijoltech2026
+      DB_NAME: frijoltech
+      JWT_SECRET: frijoltech_secret_2026_dev
+    depends_on:
+      db:
+        condition: service_healthy
+
+  frontend:
+    build: ./frijoltech-frontend
+    ports:
+      - "5173:80"
+    depends_on:
+      - backend
+
+volumes:
+  postgres_data:
