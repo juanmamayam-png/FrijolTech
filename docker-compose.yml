@@ -6,7 +6,7 @@ services:
       POSTGRES_USER: frijoltech
       POSTGRES_PASSWORD: frijoltech2026
     ports:
-      - "5432:5432"
+      - "5433:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
       - ./frijoltech-backend/sql/001_create_schema.sql:/docker-entrypoint-initdb.d/01_schema.sql
