@@ -6,6 +6,7 @@ import { Eye, EyeOff, Sprout } from 'lucide-react';
 import toast from 'react-hot-toast';
 import { loginSchema, LoginForm } from '../utils/validators';
 import { authService } from '../services/authService';
+import { LoginCredentials } from '../types/usuario.types';
 import { useAuth } from '../context/AuthContext';
 import { Input } from '../components/ui/Input';
 import { Button } from '../components/ui/Button';
@@ -21,7 +22,7 @@ export function LoginPage() {
 
   async function onSubmit(data: LoginForm) {
     try {
-      const result = await authService.login(data);
+      const result = await authService.login(data as LoginCredentials);
       login(result.token, result.usuario);
       toast.success(`¡Bienvenido, ${result.usuario.nombre}!`);
       navigate('/dashboard', { replace: true });

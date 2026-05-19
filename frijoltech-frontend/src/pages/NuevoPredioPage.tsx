@@ -5,6 +5,7 @@ import { Navigation } from 'lucide-react';
 import toast from 'react-hot-toast';
 import { predioSchema, PredioForm } from '../utils/validators';
 import { predioService } from '../services/predioService';
+import { NuevoPredioData } from '../types/predio.types';
 import { Header } from '../components/layout/Header';
 import { Container } from '../components/layout/Container';
 import { Input } from '../components/ui/Input';
@@ -43,7 +44,7 @@ export function NuevoPredioPage() {
 
   async function onSubmit(data: PredioForm) {
     try {
-      await predioService.crear(data);
+      await predioService.crear(data as NuevoPredioData);
       toast.success('Predio registrado exitosamente');
       navigate('/predios', { replace: true });
     } catch {

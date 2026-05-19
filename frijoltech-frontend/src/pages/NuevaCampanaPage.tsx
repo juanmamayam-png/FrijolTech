@@ -6,6 +6,7 @@ import toast from 'react-hot-toast';
 import { campanaSchema, CampanaForm } from '../utils/validators';
 import { campanaService } from '../services/campanaService';
 import { predioService } from '../services/predioService';
+import { NuevaCampanaData } from '../types/campana.types';
 import { Predio, Lote } from '../types/predio.types';
 import { VARIEDADES } from '../utils/constants';
 import { today } from '../utils/formatters';
@@ -47,7 +48,7 @@ export function NuevaCampanaPage() {
 
   async function onSubmit(data: CampanaForm) {
     try {
-      const result = await campanaService.iniciar(data);
+      const result = await campanaService.iniciar(data as NuevaCampanaData);
       toast.success('¡Campaña iniciada! Cronograma generado.');
       navigate(`/campanas/${result.campana.id}/cronograma`, { replace: true });
     } catch {
