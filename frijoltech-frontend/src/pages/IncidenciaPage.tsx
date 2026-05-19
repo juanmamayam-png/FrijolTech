@@ -76,7 +76,7 @@ export function IncidenciaPage() {
 
         <form onSubmit={(e) => { void handleSubmit(onSubmit)(e); }} className="space-y-5" noValidate>
           <Controller
-            name="campañaId"
+            name="campanaId"
             control={control}
             render={({ field }) => (
               <Select

@@ -64,7 +64,7 @@ export function RegisterPage() {
             type={showPass ? 'text' : 'password'}
             placeholder="Mínimo 8 caracteres"
             autoComplete="new-password"
-            {...register('contraseña')}
+            {...register('contrasena')}
             error={errors.contrasena?.message}
             rightElement={
               <button type="button" onClick={() => setShowPass((s) => !s)} className="text-muted" aria-label="Toggle contraseña">
@@ -77,7 +77,7 @@ export function RegisterPage() {
             type={showPass ? 'text' : 'password'}
             placeholder="Repite tu contraseña"
             autoComplete="new-password"
-            {...register('confirmarContraseña')}
+            {...register('confirmarContrasena')}
             error={errors.confirmarContrasena?.message}
           />
 

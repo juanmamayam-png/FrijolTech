@@ -12,7 +12,7 @@ export const registerSchema = z.object({
   confirmarContrasena: z.string(),
 }).refine((d) => d.contrasena === d.confirmarContrasena, {
   message: 'Las contraseñas no coinciden',
-  path: ['confirmarContraseña'],
+  path: ['confirmarContrasena'],
 });
 
 export const predioSchema = z.object({

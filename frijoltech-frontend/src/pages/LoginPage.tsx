@@ -60,7 +60,7 @@ export function LoginPage() {
             type={showPass ? 'text' : 'password'}
             placeholder="Tu contraseña"
             autoComplete="current-password"
-            {...register('contraseña')}
+            {...register('contrasena')}
             error={errors.contrasena?.message}
             rightElement={
               <button

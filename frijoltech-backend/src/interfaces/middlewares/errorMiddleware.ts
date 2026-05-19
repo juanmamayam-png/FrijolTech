@@ -7,8 +7,7 @@ interface AppError extends Error {
 
 const ERROR_MAP: Record<string, { status: number; message: string }> = {
   CORREO_DUPLICADO:        { status: 409, message: 'Ya existe un usuario con ese correo electrónico' },
-  CREDENCIALES_INVALIDAS:  { status: 401, message: 'Correo o contraseña incorrectos' },
-  CAMPANA_NO_ENCONTRADA:   { status: 404, message: 'Campaña no encontrada' },
+  CREDENCIALES_INVALIDAS:  { status: 401, message: 'Correo o contrasena incorrectos' },
   CAMPANA_NO_ENCONTRADA:   { status: 404, message: 'Campana no encontrada' },
   ETAPA_NO_ENCONTRADA:     { status: 404, message: 'Etapa fenológica no encontrada' },
 };
