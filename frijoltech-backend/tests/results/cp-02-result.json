@@ -1,0 +1,10 @@
+{
+  "id": "CP-02",
+  "nombre": "Login fallido",
+  "rf": "RF-02",
+  "tipo": "Validación",
+  "estado": "aprobado",
+  "tiempoMs": 70,
+  "observaciones": "Validación Zod actúa antes del servicio de autenticación.",
+  "timestamp": "2026-05-18T01:48:22.205Z"
+}

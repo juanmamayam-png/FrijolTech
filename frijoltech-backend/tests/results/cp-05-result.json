@@ -1,0 +1,10 @@
+{
+  "id": "CP-05",
+  "nombre": "Campaña Cargamanto — Factory Method",
+  "rf": "RF-05",
+  "tipo": "Camino feliz + Factory",
+  "estado": "aprobado",
+  "tiempoMs": 6,
+  "observaciones": "7 etapas generadas por FabricaCargamanto. Ciclo total: 110 días. Tiempo: 6ms",
+  "timestamp": "2026-05-18T01:48:23.378Z"
+}

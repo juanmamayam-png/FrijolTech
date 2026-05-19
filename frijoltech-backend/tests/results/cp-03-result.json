@@ -1,0 +1,10 @@
+{
+  "id": "CP-03",
+  "nombre": "Registrar predio completo",
+  "rf": "RF-04",
+  "tipo": "Camino feliz",
+  "estado": "aprobado",
+  "tiempoMs": 8,
+  "observaciones": "Predio \"Finca La Esperanza\" creado con ID=10",
+  "timestamp": "2026-05-18T01:48:22.562Z"
+}

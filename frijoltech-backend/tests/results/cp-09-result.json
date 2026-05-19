@@ -1,0 +1,10 @@
+{
+  "id": "CP-09",
+  "nombre": "Registrar incidencia fitosanitaria",
+  "rf": "RF-11",
+  "tipo": "Camino feliz + Observer",
+  "estado": "aprobado",
+  "tiempoMs": 13,
+  "observaciones": "Observer: NotificadorAgricultor, MotorRecomendaciones, DashboardRealtime, BitacoraEventos notificados correctamente.",
+  "timestamp": "2026-05-18T01:48:23.281Z"
+}

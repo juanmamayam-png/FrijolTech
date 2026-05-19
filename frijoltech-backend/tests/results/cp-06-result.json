@@ -1,0 +1,10 @@
+{
+  "id": "CP-06",
+  "nombre": "Campaña ICA Cerinza — diferenciación Factory",
+  "rf": "RF-05",
+  "tipo": "Verificación Factory",
+  "estado": "aprobado",
+  "tiempoMs": 7,
+  "observaciones": "ICA Cerinza: 125d vs Cargamanto: 110d. Diferencia: 15d.",
+  "timestamp": "2026-05-18T01:48:22.918Z"
+}
