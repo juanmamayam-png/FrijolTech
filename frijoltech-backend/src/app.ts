@@ -6,6 +6,7 @@ import predioRoutes from './interfaces/routes/predioRoutes';
 import campanaRoutes from './interfaces/routes/campanaRoutes';
 import etapaRoutes from './interfaces/routes/etapaRoutes';
 import incidenciaRoutes from './interfaces/routes/incidenciaRoutes';
+import plagaRoutes from './interfaces/routes/plagaRoutes';
 import { errorMiddleware } from './interfaces/middlewares/errorMiddleware';
 
 const app = express();
@@ -19,9 +20,10 @@ app.get('/health', (_req, res) => {
 
 app.use('/api/v1/auth', authRoutes);
 app.use('/api/v1/predios', predioRoutes);
-app.use('/api/v1/campañas', campanaRoutes);
+app.use('/api/v1/plagas', plagaRoutes);
 app.use('/api/v1/etapas', etapaRoutes);
-app.use('/api/v1/campañas', incidenciaRoutes);
+app.use('/api/v1/campanas', campanaRoutes);
+app.use('/api/v1/campanas', incidenciaRoutes);
 
 app.use(errorMiddleware);
 

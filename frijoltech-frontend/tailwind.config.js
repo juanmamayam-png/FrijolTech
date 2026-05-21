@@ -4,52 +4,71 @@ export default {
   theme: {
     extend: {
       colors: {
+        // ── Paleta terrosa editorial (FrijolTech) ──
+        // primary = vino fríjol cargamanto
         primary: {
-          DEFAULT: '#2C5F2D',
-          50:  '#f0f7f0',
-          100: '#d8ecd8',
-          200: '#b3d9b4',
-          300: '#80be81',
-          400: '#4d9f4f',
-          500: '#2C5F2D',
-          600: '#254f26',
-          700: '#1e3f1f',
-          800: '#172f18',
-          900: '#0f1f10',
+          DEFAULT: '#7D2B3A',
+          50:  '#fbf2f3',
+          100: '#f5dee1',
+          200: '#e9bcc3',
+          300: '#d98f9b',
+          400: '#bd5c6c',
+          500: '#7D2B3A',
+          600: '#6c2532',
+          700: '#5e1f2b',
+          800: '#491820',
+          900: '#331016',
         },
+        // secondary = verde follaje
         secondary: {
-          DEFAULT: '#97BC62',
-          50:  '#f5f9ee',
-          100: '#e8f2d4',
-          200: '#d0e5a9',
-          300: '#b9d87e',
-          400: '#97BC62',
-          500: '#7da04d',
-          600: '#638039',
-          700: '#4a6029',
-          800: '#31401a',
-          900: '#18200d',
+          DEFAULT: '#4A6B35',
+          50:  '#f2f6ee',
+          100: '#dfe9d4',
+          200: '#c2d4ad',
+          300: '#9cbb7e',
+          400: '#6f9550',
+          500: '#4A6B35',
+          600: '#3d5a2c',
+          700: '#314824',
+          800: '#26371c',
+          900: '#1a2613',
         },
+        // accent = se mantiene como alerta/rojo terracota
         accent: {
-          DEFAULT: '#B85042',
-          50:  '#fdf3f2',
-          100: '#fae4e1',
-          200: '#f5c9c4',
-          300: '#eeada7',
-          400: '#d47268',
-          500: '#B85042',
-          600: '#9b3f34',
-          700: '#7d2f26',
-          800: '#5f2018',
-          900: '#40100b',
+          DEFAULT: '#B3422F',
+          50:  '#fcf0ee',
+          100: '#f8ddd8',
+          200: '#f0bbb1',
+          300: '#e59384',
+          400: '#cf6450',
+          500: '#B3422F',
+          600: '#973626',
+          700: '#79291d',
+          800: '#5b1f16',
+          900: '#3d140e',
         },
-        light: '#F5F1E8',
-        dark: '#1A3A1B',
-        muted: '#6B7C5B',
+        soil:   '#8A6D3B',  // ocre tierra
+        light:  '#F4EFE6',  // papel cálido (fondo app)
+        surface:'#FBF8F1',  // superficie de tarjetas
+        dark:   '#2A2417',  // texto principal
+        muted:  '#6B6151',  // texto secundario
+        faint:  '#9C917E',  // texto tenue
+        line:   '#E2D9C7',  // bordes
+        // semánticos de estado climático / severidad
+        warn:   '#C98A1E',
+        danger: '#B3422F',
+        ok:     '#4A6B35',
       },
       fontFamily: {
-        serif: ['Georgia', 'Times New Roman', 'serif'],
-        sans: ['Inter', 'system-ui', 'sans-serif'],
+        // Fraunces para titulares (serif con carácter); Familjen Grotesk para cuerpo
+        serif: ['Fraunces', 'Georgia', 'serif'],
+        sans:  ['"Familjen Grotesk"', 'system-ui', 'sans-serif'],
+        mono:  ['"Spline Sans Mono"', 'ui-monospace', 'monospace'],
+      },
+      borderRadius: {
+        xl:  '0.75rem',   // 12px
+        '2xl': '0.875rem',// 14px (tarjetas)
+        '3xl': '1.25rem',
       },
     },
   },

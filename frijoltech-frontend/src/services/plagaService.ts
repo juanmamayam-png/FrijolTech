@@ -4,7 +4,7 @@ import { ApiResponse } from '../types/api.types';
 
 export const plagaService = {
   async listar(): Promise<Plaga[]> {
-    const res = await api.get<ApiResponse<Plaga[]>>('/campañas/plagas');
+    const res = await api.get<ApiResponse<Plaga[]>>('/plagas');
     return res.data.data;
   },
 };

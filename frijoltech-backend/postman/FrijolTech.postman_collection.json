@@ -167,7 +167,7 @@
           ],
           "request": {
             "method": "POST",
-            "url": "{{baseUrl}}/campañas",
+            "url": "{{baseUrl}}/campanas",
             "header": [
               { "key": "Content-Type", "value": "application/json" },
               { "key": "Authorization", "value": "Bearer {{token}}" }
@@ -197,7 +197,7 @@
           ],
           "request": {
             "method": "POST",
-            "url": "{{baseUrl}}/campañas",
+            "url": "{{baseUrl}}/campanas",
             "header": [
               { "key": "Content-Type", "value": "application/json" },
               { "key": "Authorization", "value": "Bearer {{token}}" }
@@ -233,7 +233,7 @@
           ],
           "request": {
             "method": "GET",
-            "url": "{{baseUrl}}/campañas/1/cronograma",
+            "url": "{{baseUrl}}/campanas/1/cronograma",
             "header": [
               { "key": "Authorization", "value": "Bearer {{token}}" }
             ]
@@ -339,7 +339,7 @@
           ],
           "request": {
             "method": "GET",
-            "url": "{{baseUrl}}/campañas/plagas"
+            "url": "{{baseUrl}}/plagas"
           }
         },
         {
@@ -360,7 +360,7 @@
           ],
           "request": {
             "method": "POST",
-            "url": "{{baseUrl}}/campañas/1/incidencias",
+            "url": "{{baseUrl}}/campanas/1/incidencias",
             "header": [
               { "key": "Content-Type", "value": "application/json" },
               { "key": "Authorization", "value": "Bearer {{token}}" }
@@ -386,7 +386,7 @@
           ],
           "request": {
             "method": "POST",
-            "url": "{{baseUrl}}/campañas/1/incidencias",
+            "url": "{{baseUrl}}/campanas/1/incidencias",
             "header": [
               { "key": "Content-Type", "value": "application/json" },
               { "key": "Authorization", "value": "Bearer {{token}}" }

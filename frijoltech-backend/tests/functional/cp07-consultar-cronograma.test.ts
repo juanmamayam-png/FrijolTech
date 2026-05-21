@@ -72,7 +72,7 @@ beforeAll(() => {
 test('CP-07: GET /campanas/:id retorna campana + 7 etapas con fechas', async () => {
   const inicio = Date.now();
   const res = await request(app)
-    .get(`/api/v1/campa%C3%B1as/${CAMPANA_ID}`)
+    .get(`/api/v1/campanas/${CAMPANA_ID}`)
     .set('Authorization', `Bearer ${token}`);
   tiempoMs = Date.now() - inicio;
 
@@ -94,7 +94,7 @@ test('CP-07b: Las etapas tienen fechas estimadas correctamente calculadas', () =
 test('CP-07c: Campana no encontrada retorna 404', async () => {
   mockCampanaBuscar.mockResolvedValueOnce(null);
   const res = await request(app)
-    .get('/api/v1/campa%C3%B1as/9999')
+    .get('/api/v1/campanas/9999')
     .set('Authorization', `Bearer ${token}`);
 
   expect(res.status).toBe(404);

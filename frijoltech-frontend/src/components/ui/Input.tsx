@@ -26,11 +26,11 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             ref={ref}
             id={inputId}
             className={`
-              w-full rounded-xl border-2 bg-white px-4 py-3 text-dark text-base
-              placeholder:text-muted/60 transition-colors
+              w-full rounded-xl border-2 bg-surface px-4 py-3 text-dark text-base
+              placeholder:text-faint/70 transition-colors
               focus:outline-none focus:border-primary
-              disabled:bg-gray-50 disabled:cursor-not-allowed
-              ${error ? 'border-accent' : 'border-gray-200'}
+              disabled:bg-light disabled:cursor-not-allowed
+              ${error ? 'border-accent' : 'border-line'}
               ${leftIcon ? 'pl-10' : ''}
               ${rightElement ? 'pr-12' : ''}
               ${className}

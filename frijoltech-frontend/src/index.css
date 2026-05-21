@@ -4,12 +4,22 @@
 
 @layer base {
   html {
-    font-family: 'Inter', system-ui, sans-serif;
+    font-family: 'Familjen Grotesk', system-ui, sans-serif;
     -webkit-tap-highlight-color: transparent;
   }
 
   body {
     @apply bg-light text-dark antialiased;
+    /* textura de papel sutil, coherente con el Figma */
+    background-image:
+      radial-gradient(circle at 12% 18%, rgba(125, 43, 58, 0.025), transparent 42%),
+      radial-gradient(circle at 88% 10%, rgba(74, 107, 53, 0.03), transparent 45%);
+    background-attachment: fixed;
+  }
+
+  h1, h2, h3, .font-serif {
+    font-family: 'Fraunces', Georgia, serif;
+    letter-spacing: -0.01em;
   }
 
   /* Focus visible accesible */
@@ -17,13 +27,17 @@
     @apply outline-2 outline-offset-2 outline-primary;
   }
 
-  /* Scroll suave */
   * {
     scroll-behavior: smooth;
   }
 }
 
 @layer utilities {
+  /* Datos numéricos en monoespaciada (temperaturas, áreas, fechas) */
+  .font-mono {
+    font-family: 'Spline Sans Mono', ui-monospace, monospace;
+  }
+
   /* Safe area para dispositivos con notch */
   .pt-safe-top {
     padding-top: max(1rem, env(safe-area-inset-top));

@@ -108,7 +108,7 @@ test('CP-09: Incidencia alta → 201 con id + observadores disparados', async ()
   const inicio = Date.now();
 
   const res = await request(app)
-    .post(`/api/v1/campa%C3%B1as/${CAMPANA_ID}/incidencias`)
+    .post(`/api/v1/campanas/${CAMPANA_ID}/incidencias`)
     .set('Authorization', `Bearer ${token}`)
     .send({
       fecha: DATOS_PRUEBA.incidencia.fecha,
@@ -140,7 +140,7 @@ test('CP-09b: Incidencia media → 201 sin disparar observadores', async () => {
   });
 
   const res = await request(app)
-    .post(`/api/v1/campa%C3%B1as/${CAMPANA_ID}/incidencias`)
+    .post(`/api/v1/campanas/${CAMPANA_ID}/incidencias`)
     .set('Authorization', `Bearer ${token}`)
     .send({
       fecha: '2026-05-10',
@@ -157,7 +157,7 @@ test('CP-09c: Campana inexistente → 404', async () => {
   mockCampanaBuscar.mockResolvedValueOnce(null);
 
   const res = await request(app)
-    .post(`/api/v1/campa%C3%B1as/9999/incidencias`)
+    .post(`/api/v1/campanas/9999/incidencias`)
     .set('Authorization', `Bearer ${token}`)
     .send({
       fecha: '2026-05-10',

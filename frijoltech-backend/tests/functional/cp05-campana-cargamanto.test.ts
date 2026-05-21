@@ -50,7 +50,7 @@ beforeAll(() => {
 test('CP-05: Campana Cargamanto genera exactamente 7 etapas fenológicas', async () => {
   const inicio = Date.now();
   const res = await request(app)
-    .post('/api/v1/campa%C3%B1as')
+    .post('/api/v1/campanas')
     .set('Authorization', `Bearer ${token}`)
     .send(DATOS_PRUEBA.campanaCargamanto);
   tiempoMs = Date.now() - inicio;

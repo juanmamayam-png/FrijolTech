@@ -50,7 +50,7 @@ beforeAll(() => {
 test('CP-06: Campana ICA Cerinza genera 7 etapas via HTTP', async () => {
   const inicio = Date.now();
   const res = await request(app)
-    .post('/api/v1/campa%C3%B1as')
+    .post('/api/v1/campanas')
     .set('Authorization', `Bearer ${token}`)
     .send(DATOS_PRUEBA.campanaIcaCerinza);
   tiempoMs = Date.now() - inicio;

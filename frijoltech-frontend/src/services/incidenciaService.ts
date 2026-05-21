@@ -5,7 +5,7 @@ import { ApiResponse } from '../types/api.types';
 export const incidenciaService = {
   async registrar(campañaId: number, data: IncidenciaData): Promise<Incidencia> {
     const res = await api.post<ApiResponse<Incidencia>>(
-      `/campañas/${campañaId}/incidencias`,
+      `/campanas/${campañaId}/incidencias`,
       data
     );
     return res.data.data;

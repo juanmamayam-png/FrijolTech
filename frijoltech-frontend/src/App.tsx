@@ -14,13 +14,13 @@ export default function App() {
             duration: 4000,
             style: {
               borderRadius: '12px',
-              background: '#1A3A1B',
+              background: '#2A2417',
               color: '#fff',
               fontSize: '14px',
               padding: '12px 16px',
             },
-            success: { iconTheme: { primary: '#97BC62', secondary: '#fff' } },
-            error:   { iconTheme: { primary: '#B85042', secondary: '#fff' } },
+            success: { iconTheme: { primary: '#4A6B35', secondary: '#fff' } },
+            error:   { iconTheme: { primary: '#B3422F', secondary: '#fff' } },
           }}
         />
       </AuthProvider>

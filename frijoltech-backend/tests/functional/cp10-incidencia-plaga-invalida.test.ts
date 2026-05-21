@@ -55,7 +55,7 @@ test('CP-10: plagaId no numérico → 422', async () => {
   const inicio = Date.now();
 
   const res = await request(app)
-    .post(`/api/v1/campa%C3%B1as/${CAMPANA_ID}/incidencias`)
+    .post(`/api/v1/campanas/${CAMPANA_ID}/incidencias`)
     .set('Authorization', `Bearer ${token}`)
     .send({
       fecha: '2026-05-10',
@@ -74,7 +74,7 @@ test('CP-10: plagaId no numérico → 422', async () => {
 
 test('CP-10b: severidad inválida → 422', async () => {
   const res = await request(app)
-    .post(`/api/v1/campa%C3%B1as/${CAMPANA_ID}/incidencias`)
+    .post(`/api/v1/campanas/${CAMPANA_ID}/incidencias`)
     .set('Authorization', `Bearer ${token}`)
     .send({
       fecha: '2026-05-10',
@@ -89,7 +89,7 @@ test('CP-10b: severidad inválida → 422', async () => {
 
 test('CP-10c: fecha con formato incorrecto → 422', async () => {
   const res = await request(app)
-    .post(`/api/v1/campa%C3%B1as/${CAMPANA_ID}/incidencias`)
+    .post(`/api/v1/campanas/${CAMPANA_ID}/incidencias`)
     .set('Authorization', `Bearer ${token}`)
     .send({
       fecha: '10/05/2026',
@@ -104,7 +104,7 @@ test('CP-10c: fecha con formato incorrecto → 422', async () => {
 
 test('CP-10d: observaciones vacías → 422', async () => {
   const res = await request(app)
-    .post(`/api/v1/campa%C3%B1as/${CAMPANA_ID}/incidencias`)
+    .post(`/api/v1/campanas/${CAMPANA_ID}/incidencias`)
     .set('Authorization', `Bearer ${token}`)
     .send({
       fecha: '2026-05-10',
@@ -118,7 +118,7 @@ test('CP-10d: observaciones vacías → 422', async () => {
 
 test('CP-10e: sin token → 401', async () => {
   const res = await request(app)
-    .post(`/api/v1/campa%C3%B1as/${CAMPANA_ID}/incidencias`)
+    .post(`/api/v1/campanas/${CAMPANA_ID}/incidencias`)
     .send({
       fecha: '2026-05-10',
       severidad: 'alta',
