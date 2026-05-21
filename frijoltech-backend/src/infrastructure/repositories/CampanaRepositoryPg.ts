@@ -24,6 +24,21 @@ export class CampanaRepositoryPg implements ICampanaRepository {
     return result.rows[0] ?? null;
   }
 
+  async listarPorPropietario(propietarioId: number): Promise<Campana[]> {
+    const result = await this.db.query<Campana>(
+      `SELECT c.id, c.fecha_siembra AS "fechaSiembra", c.fecha_cosecha AS "fechaCosecha",
+              c.area_sembrada AS "areaSembrada", c.estado,
+              c.lote_id AS "loteId", c.variedad_id AS "variedadId", c.created_at AS "createdAt"
+       FROM campana c
+       JOIN lote l ON c.lote_id = l.id
+       JOIN predio p ON l.predio_id = p.id
+       WHERE p.propietario_id = $1
+       ORDER BY c.created_at DESC`,
+      [propietarioId],
+    );
+    return result.rows;
+  }
+
   async listarPorLote(loteId: number): Promise<Campana[]> {
     const result = await this.db.query<Campana>(
       `SELECT id, fecha_siembra AS "fechaSiembra", fecha_cosecha AS "fechaCosecha", area_sembrada AS "areaSembrada", estado, lote_id AS "loteId", variedad_id AS "variedadId", created_at AS "createdAt"

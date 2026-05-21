@@ -4,7 +4,7 @@ import { Campana } from '../../../domain/entities/Campana';
 import { EtapaFenologica } from '../../../domain/entities/EtapaFenologica';
 
 interface ConsultarCampanaOutput {
-  campana: Campana;
+  campaña: Campana;
   etapas: EtapaFenologica[];
 }
 
@@ -21,6 +21,6 @@ export class ConsultarCampanaUseCase {
     }
 
     const etapas = await this.etapaRepo.listarPorCampana(campanaId);
-    return { campana, etapas };
+    return { campaña: campana, etapas };
   }
 }

@@ -19,9 +19,9 @@ app.get('/health', (_req, res) => {
 
 app.use('/api/v1/auth', authRoutes);
 app.use('/api/v1/predios', predioRoutes);
-app.use('/api/v1/campa%C3%B1as', campanaRoutes);
+app.use('/api/v1/campañas', campanaRoutes);
 app.use('/api/v1/etapas', etapaRoutes);
-app.use('/api/v1/campa%C3%B1as', incidenciaRoutes);
+app.use('/api/v1/campañas', incidenciaRoutes);
 
 app.use(errorMiddleware);
 

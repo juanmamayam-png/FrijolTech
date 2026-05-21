@@ -1,6 +1,6 @@
 import { useParams, useNavigate } from 'react-router-dom';
 import { Calendar, Sprout } from 'lucide-react';
-import { useCampaña } from '../hooks/useCampañas';
+import { useCampaña } from '../hooks/useCampanas';
 import { EtapaFenologica } from '../types/etapa.types';
 import { Header } from '../components/layout/Header';
 import { Container } from '../components/layout/Container';

@@ -13,7 +13,7 @@ interface IniciarCampanaInput {
 }
 
 interface IniciarCampanaOutput {
-  campana: Campana;
+  campaña: Campana;
   etapas: EtapaFenologica[];
 }
 
@@ -36,6 +36,6 @@ export class IniciarCampanaUseCase {
     const plantillaEtapas = fabrica.generarCronograma(campana.id!, input.fechaSiembra);
     const etapas = await this.etapaRepo.crearLote(plantillaEtapas);
 
-    return { campana, etapas };
+    return { campaña: campana, etapas };
   }
 }

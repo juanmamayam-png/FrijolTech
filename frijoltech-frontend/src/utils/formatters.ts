@@ -18,7 +18,7 @@ export function formatDateShort(dateStr: string): string {
 }
 
 export function formatArea(hectareas: number): string {
-  return `${hectareas.toFixed(2)} ha`;
+  return `${Number(hectareas).toFixed(2)} ha`;
 }
 
 export function formatVariedad(nombre: string): string {

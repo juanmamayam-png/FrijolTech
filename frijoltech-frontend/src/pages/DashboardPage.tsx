@@ -67,7 +67,7 @@ export function DashboardPage() {
       </div>
 
       {/* Grid de acciones */}
-      <div className="max-w-2xl mx-auto px-4 -mt-4 pb-24">
+      <div className="max-w-2xl mx-auto px-4 mt-6 pb-24">
         <div className="grid grid-cols-2 gap-4">
           {cards.map(({ title, description, Icon, to, bg }) => (
             <button

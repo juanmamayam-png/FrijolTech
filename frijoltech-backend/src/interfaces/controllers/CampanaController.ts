@@ -1,4 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
+import { AuthRequest } from '../middlewares/authMiddleware';
 import { IniciarCampanaUseCase } from '../../application/use-cases/campanas/IniciarCampanaUseCase';
 import { ConsultarCampanaUseCase } from '../../application/use-cases/campanas/ConsultarCampanaUseCase';
 import { CampanaRepositoryPg } from '../../infrastructure/repositories/CampanaRepositoryPg';
@@ -8,7 +9,16 @@ const campanaRepo = new CampanaRepositoryPg();
 const etapaRepo = new EtapaRepositoryPg();
 
 export class CampanaController {
-  async iniciar(req: Request, res: Response, next: NextFunction): Promise<void> {
+  async listar(req: AuthRequest, res: Response, next: NextFunction): Promise<void> {
+    try {
+      const campanas = await campanaRepo.listarPorPropietario(req.usuario!.sub);
+      res.status(200).json({ data: campanas });
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  async iniciar(req: AuthRequest, res: Response, next: NextFunction): Promise<void> {
     try {
       const uc = new IniciarCampanaUseCase(campanaRepo, etapaRepo);
       const resultado = await uc.ejecutar({

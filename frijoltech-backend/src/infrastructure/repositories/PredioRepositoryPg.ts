@@ -24,6 +24,28 @@ export class PredioRepositoryPg implements IPredioRepository {
     return result.rows;
   }
 
+  async actualizar(id: number, datos: Partial<Omit<Predio, 'id' | 'propietarioId' | 'createdAt'>>): Promise<Predio> {
+    const campos: string[] = [];
+    const valores: unknown[] = [];
+    let idx = 1;
+
+    if (datos.nombre    !== undefined) { campos.push(`nombre = $${idx++}`);     valores.push(datos.nombre); }
+    if (datos.ubicacion !== undefined) { campos.push(`ubicacion = $${idx++}`);  valores.push(datos.ubicacion); }
+    if (datos.latitud   !== undefined) { campos.push(`latitud = $${idx++}`);    valores.push(datos.latitud); }
+    if (datos.longitud  !== undefined) { campos.push(`longitud = $${idx++}`);   valores.push(datos.longitud); }
+    if (datos.altitud   !== undefined) { campos.push(`altitud = $${idx++}`);    valores.push(datos.altitud); }
+    if (datos.areaTotal !== undefined) { campos.push(`area_total = $${idx++}`); valores.push(datos.areaTotal); }
+
+    valores.push(id);
+    const result = await this.db.query<Predio>(
+      `UPDATE predio SET ${campos.join(', ')}
+       WHERE id = $${idx}
+       RETURNING id, nombre, ubicacion, latitud, longitud, altitud, area_total AS "areaTotal", propietario_id AS "propietarioId", created_at AS "createdAt"`,
+      valores,
+    );
+    return result.rows[0];
+  }
+
   async buscarPorId(id: number): Promise<Predio | null> {
     const result = await this.db.query<Predio>(
       `SELECT id, nombre, ubicacion, latitud, longitud, altitud, area_total AS "areaTotal", propietario_id AS "propietarioId", created_at AS "createdAt"

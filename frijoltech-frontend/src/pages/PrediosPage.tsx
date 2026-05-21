@@ -36,7 +36,7 @@ export function PrediosPage() {
 
   return (
     <>
-      <Header title="Mis predios" rightElement={
+      <Header title="Mis predios" showBack rightElement={
         <div className="flex items-center gap-1 text-white/80 text-sm">
           <MapPin className="w-4 h-4" />
           <span>{predios.length}</span>

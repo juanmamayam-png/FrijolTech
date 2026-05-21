@@ -7,8 +7,10 @@ import { RegisterPage }        from '../pages/RegisterPage';
 import { DashboardPage }       from '../pages/DashboardPage';
 import { PrediosPage }         from '../pages/PrediosPage';
 import { NuevoPredioPage }     from '../pages/NuevoPredioPage';
-import { CampañasPage }        from '../pages/CampañasPage';
-import { NuevaCampañaPage }    from '../pages/NuevaCampañaPage';
+import { PredioDetailPage }    from '../pages/PredioDetailPage';
+import { EditarPredioPage }    from '../pages/EditarPredioPage';
+import { CampañasPage }        from '../pages/CampanasPage';
+import { NuevaCampañaPage }    from '../pages/NuevaCampanaPage';
 import { CronogramaPage }      from '../pages/CronogramaPage';
 import { RegistroAvancePage }  from '../pages/RegistroAvancePage';
 import { IncidenciaPage }      from '../pages/IncidenciaPage';
@@ -29,6 +31,8 @@ export function AppRoutes() {
         <Route path="/dashboard"                   element={<DashboardPage />} />
         <Route path="/predios"                     element={<PrediosPage />} />
         <Route path="/predios/nuevo"               element={<NuevoPredioPage />} />
+        <Route path="/predios/:id"                 element={<PredioDetailPage />} />
+        <Route path="/predios/:id/editar"          element={<EditarPredioPage />} />
         <Route path="/campañas"                    element={<CampañasPage />} />
         <Route path="/campañas/nueva"              element={<NuevaCampañaPage />} />
         <Route path="/campañas/:id/cronograma"     element={<CronogramaPage />} />
